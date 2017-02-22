@@ -53,6 +53,7 @@ public class LinkerController {
                 LOG.info("Search url is: []", href);
             }
         }
+        LOG.info("End of search");
     }
 
 }
