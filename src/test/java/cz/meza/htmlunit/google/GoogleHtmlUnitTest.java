@@ -2,9 +2,10 @@ package cz.meza.htmlunit.google;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,13 +21,16 @@ public class GoogleHtmlUnitTest {
     private static final String GOOGLE_URL = "http://www.google.com";
     private static final String QUERY = "vladimir mezera";
     private static final String LINKED_IN = "linkedin";
+    
 
-    @BeforeEach
+    @Before
     public void init() throws IOException {
         webClient = new WebClient();
-        webClient.getOptions().setCssEnabled(true);
+        webClient.getOptions().setCssEnabled(false);
         webClient.getOptions().setJavaScriptEnabled(false);
-        webClient.getOptions().setAppletEnabled(true);
+        webClient.getOptions().setAppletEnabled(false);
+
+
         page = webClient.getPage(GOOGLE_URL);
 
         HtmlForm form = page.getFormByName("f");
@@ -44,7 +48,7 @@ public class GoogleHtmlUnitTest {
     public void runGoogleSearch() throws IOException {
 
          int sizeOfResults = page.getByXPath("//h3[@class='r']").size();
-         Assertions.assertNotEquals(sizeOfResults, 0);
+         Assert.assertNotEquals(sizeOfResults, 0);
     }
 
     /**
@@ -65,7 +69,7 @@ public class GoogleHtmlUnitTest {
                 }
             }
         }
-        Assertions.assertTrue(testLinked);
+        Assert.assertTrue(testLinked);
 
     }
 }
