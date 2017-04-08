@@ -25,7 +25,7 @@ public class LinkerController {
 
 
     @PostConstruct
-    public void init() throws IOException {
+    public void init()  {
         webClient = new WebClient();
         webClient.getOptions().setCssEnabled(true);
         webClient.getOptions().setJavaScriptEnabled(false);
