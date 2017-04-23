@@ -2,7 +2,6 @@ package cz.meza.htmlunit.google;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,16 +14,16 @@ import java.util.List;
  */
 public class GoogleHtmlUnitTest {
 
-    private WebClient webClient;
-    private HtmlPage page;
-
     private static final String GOOGLE_URL = "http://www.google.com";
     private static final String QUERY = "vladimir mezera";
     private static final String LINKED_IN = "linkedin";
-    
+
+    private HtmlPage page;
 
     @Before
     public void init() throws IOException {
+        WebClient webClient;
+
         webClient = new WebClient();
         webClient.getOptions().setCssEnabled(false);
         webClient.getOptions().setJavaScriptEnabled(false);

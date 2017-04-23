@@ -18,7 +18,6 @@ import java.util.List;
 public class LinkerController {
 
     private WebClient webClient;
-    private HtmlPage page;
     private String GOOGLE_URL = "http://www.google.com";
 
     private static final Logger LOG = LoggerFactory.getLogger(LinkerController.class);
@@ -36,7 +35,7 @@ public class LinkerController {
     public void testId(@RequestParam String search) throws IOException {
 
         LOG.info("Searching with parameter []", search);
-        page = webClient.getPage(GOOGLE_URL);
+        HtmlPage page = webClient.getPage(GOOGLE_URL);
 
         HtmlForm form = page.getFormByName("f");
         HtmlInput input = form.getInputByName("q");
@@ -45,7 +44,6 @@ public class LinkerController {
         page = button.click();
 
         List<HtmlHeading3> listHeading = (List<HtmlHeading3>) page.getByXPath("//h3[@class='r']");
-        boolean testLinked = false;
         for (HtmlHeading3 head: listHeading) {
             HtmlElement el = head.getElementsByTagName("a").get(0);
             if (el != null) {
